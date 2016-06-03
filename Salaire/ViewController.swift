@@ -18,27 +18,58 @@ class ViewController: UIViewController {
     @IBOutlet weak var YearlyGrossValue: UITextField!
     
     @IBAction func HourlyGrossChanged(sender: AnyObject) {
-        print(HourlyGrossValue.text)
+        let inputDouble = (HourlyGrossValue.text! as NSString).doubleValue
+        computeValues(inputDouble)
     }
     
     @IBAction func HourlyNetChanged(sender: AnyObject) {
-        print(HourlyNetValue.text)
+        let inputDouble = (HourlyNetValue.text! as NSString).doubleValue
+        computeValues(inputDouble)
     }
     
     @IBAction func MonthlyGrossChanged(sender: AnyObject) {
-        print(MonthlyGrossValue.text)
+        let inputDouble = (MonthlyGrossValue.text! as NSString).doubleValue
+        computeValues(inputDouble)
     }
     
     @IBAction func MonthlyNetChanged(sender: AnyObject) {
-        print(MonthlyNetValue.text)
+        let inputDouble = (MonthlyNetValue.text! as NSString).doubleValue
+        computeValues(inputDouble)
     }
     
     @IBAction func YearlyGrossChanged(sender: AnyObject) {
-        print(YearlyGrossValue.text)
+        let inputDouble = (YearlyGrossValue.text! as NSString).doubleValue
+        computeValues(inputDouble)
     }
     
     @IBAction func YearlyNetChanged(sender: AnyObject) {
-        print(YearlyNetValue.text)
+        let inputDouble = (YearlyNetValue.text! as NSString).doubleValue
+        computeValues(inputDouble)
+    }
+    
+    var yearlyGross: Double!
+    
+    func computeValues(yearly: Double) {
+        
+        
+        if !YearlyGrossValue.isFirstResponder() {
+            YearlyGrossValue.text = (String)(yearly)
+        }
+        if !MonthlyGrossValue.isFirstResponder() {
+            MonthlyGrossValue.text = (String)(yearly / 12)
+        }
+        if !HourlyGrossValue.isFirstResponder() {
+            HourlyGrossValue.text = (String)(yearly / 12 / 30)
+        }
+        if !YearlyNetValue.isFirstResponder() {
+            YearlyNetValue.text = (String)(yearly)
+        }
+        if !MonthlyNetValue.isFirstResponder() {
+            MonthlyNetValue.text = (String)(yearly / 12)
+        }
+        if !HourlyNetValue.isFirstResponder() {
+            HourlyNetValue.text = (String)(yearly / 12 / 30)
+        }
     }
     
     override func viewDidLoad() {
