@@ -21,9 +21,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var monthsPerYearValue: UITextField!
     @IBOutlet weak var wageCostsValue: UITextField!
     
+    
+    
     @IBAction func HourlyGrossChanged(sender: AnyObject) {
-        let inputDouble = (HourlyGrossValue.text! as NSString).doubleValue
-        computeValues(hoursToYears(inputDouble))
+        refresh()
     }
     
     @IBAction func HourlyNetChanged(sender: AnyObject) {
@@ -50,6 +51,15 @@ class ViewController: UIViewController {
         let inputDouble = (YearlyNetValue.text! as NSString).doubleValue
         computeValues(netToGross(inputDouble))
     }
+    
+    func refresh() {
+        let inputDouble = (HourlyGrossValue.text! as NSString).doubleValue
+        computeValues(hoursToYears(inputDouble))
+    }
+    
+    @IBAction func hoursPerWeekChanged(sender: AnyObject) { refresh() }
+    @IBAction func monthsPerYearChanged(sender: AnyObject) { refresh() }
+    @IBAction func wageCostsChanged(sender: AnyObject) { refresh() }
     
     var yearlyGross: Double!
     
