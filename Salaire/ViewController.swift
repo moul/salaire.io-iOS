@@ -23,22 +23,22 @@ class ViewController: UIViewController {
     
     @IBAction func HourlyGrossChanged(sender: AnyObject) {
         let inputDouble = (HourlyGrossValue.text! as NSString).doubleValue
-        computeValues(inputDouble * 12 * 152)
+        computeValues(hoursToYears(inputDouble))
     }
     
     @IBAction func HourlyNetChanged(sender: AnyObject) {
         let inputDouble = (HourlyNetValue.text! as NSString).doubleValue
-        computeValues(inputDouble * 12 * 152)
+        computeValues(netToGross(hoursToYears(inputDouble)))
     }
     
     @IBAction func MonthlyGrossChanged(sender: AnyObject) {
         let inputDouble = (MonthlyGrossValue.text! as NSString).doubleValue
-        computeValues(inputDouble * 12)
+        computeValues(monthsToYears(inputDouble))
     }
     
     @IBAction func MonthlyNetChanged(sender: AnyObject) {
         let inputDouble = (MonthlyNetValue.text! as NSString).doubleValue
-        computeValues(inputDouble * 12)
+        computeValues(netToGross(monthsToYears(inputDouble)))
     }
     
     @IBAction func YearlyGrossChanged(sender: AnyObject) {
@@ -48,7 +48,7 @@ class ViewController: UIViewController {
     
     @IBAction func YearlyNetChanged(sender: AnyObject) {
         let inputDouble = (YearlyNetValue.text! as NSString).doubleValue
-        computeValues(inputDouble)
+        computeValues(netToGross(inputDouble))
     }
     
     var yearlyGross: Double!
@@ -59,19 +59,19 @@ class ViewController: UIViewController {
             YearlyGrossValue.text = String(format:"%03.2f", arguments: [yearlyGross])
         }
         if !MonthlyGrossValue.isFirstResponder() {
-            MonthlyGrossValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12])
+            MonthlyGrossValue.text = String(format:"%03.2f", arguments: [yearsToMonths(yearlyGross)])
         }
         if !HourlyGrossValue.isFirstResponder() {
-            HourlyGrossValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12 / 152])
+            HourlyGrossValue.text = String(format:"%03.2f", arguments: [yearsToHours(yearlyGross)])
         }
         if !YearlyNetValue.isFirstResponder() {
-            YearlyNetValue.text = String(format:"%03.2f", arguments: [yearlyGross])
+            YearlyNetValue.text = String(format:"%03.2f", arguments: [grossToNet(yearlyGross)])
         }
         if !MonthlyNetValue.isFirstResponder() {
-            MonthlyNetValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12])
+            MonthlyNetValue.text = String(format:"%03.2f", arguments: [grossToNet(yearsToMonths(yearlyGross))])
         }
         if !HourlyNetValue.isFirstResponder() {
-            HourlyNetValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12 / 152])
+            HourlyNetValue.text = String(format:"%03.2f", arguments: [grossToNet(yearsToHours(yearlyGross))])
         }
     }
     
@@ -85,6 +85,39 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
+    // helpers
+    func hoursToMonths(hours: Double) -> Double {
+        return hours * (hoursPerWeekValue.text! as NSString).doubleValue * 52 / 12
+    }
+    
+    func monthsToHours(months: Double) -> Double {
+        return months / ((hoursPerWeekValue.text! as NSString).doubleValue * 52 / 12)
+    }
+    
+    func hoursToYears(hours: Double) -> Double {
+        return monthsToYears(hoursToMonths(hours))
+    }
+    
+    func yearsToHours(years: Double) -> Double {
+        return monthsToHours(yearsToMonths(years))
+    }
+    
+    func yearsToMonths(years: Double) -> Double {
+        return years / (monthsPerYearValue.text! as NSString).doubleValue
+    }
+    
+    func monthsToYears(months: Double) -> Double {
+        return months * (monthsPerYearValue.text! as NSString).doubleValue
+    }
+    
+    func netToGross(net: Double) -> Double {
+        let wageCosts = (wageCostsValue.text! as NSString).doubleValue
+        return net * 100 / (100 - wageCosts)
+    }
+    
+    func grossToNet(gross: Double) -> Double {
+        let wageCosts = (wageCostsValue.text! as NSString).doubleValue
+        return gross * (100 - wageCosts) / 100
+    }
 }
 
