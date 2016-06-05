@@ -19,22 +19,22 @@ class ViewController: UIViewController {
     
     @IBAction func HourlyGrossChanged(sender: AnyObject) {
         let inputDouble = (HourlyGrossValue.text! as NSString).doubleValue
-        computeValues(inputDouble)
+        computeValues(inputDouble * 12 * 152)
     }
     
     @IBAction func HourlyNetChanged(sender: AnyObject) {
         let inputDouble = (HourlyNetValue.text! as NSString).doubleValue
-        computeValues(inputDouble)
+        computeValues(inputDouble * 12 * 152)
     }
     
     @IBAction func MonthlyGrossChanged(sender: AnyObject) {
         let inputDouble = (MonthlyGrossValue.text! as NSString).doubleValue
-        computeValues(inputDouble)
+        computeValues(inputDouble * 12)
     }
     
     @IBAction func MonthlyNetChanged(sender: AnyObject) {
         let inputDouble = (MonthlyNetValue.text! as NSString).doubleValue
-        computeValues(inputDouble)
+        computeValues(inputDouble * 12)
     }
     
     @IBAction func YearlyGrossChanged(sender: AnyObject) {
@@ -49,26 +49,25 @@ class ViewController: UIViewController {
     
     var yearlyGross: Double!
     
-    func computeValues(yearly: Double) {
-        
+    func computeValues(yearlyGross: Double) {
         
         if !YearlyGrossValue.isFirstResponder() {
-            YearlyGrossValue.text = String(format:"%03.2f", arguments: [yearly])
+            YearlyGrossValue.text = String(format:"%03.2f", arguments: [yearlyGross])
         }
         if !MonthlyGrossValue.isFirstResponder() {
-            MonthlyGrossValue.text = String(format:"%03.2f", arguments: [yearly / 12])
+            MonthlyGrossValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12])
         }
         if !HourlyGrossValue.isFirstResponder() {
-            HourlyGrossValue.text = String(format:"%03.2f", arguments: [yearly / 12 / 30])
+            HourlyGrossValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12 / 152])
         }
         if !YearlyNetValue.isFirstResponder() {
-            YearlyNetValue.text = String(format:"%03.2f", arguments: [yearly])
+            YearlyNetValue.text = String(format:"%03.2f", arguments: [yearlyGross])
         }
         if !MonthlyNetValue.isFirstResponder() {
-            MonthlyNetValue.text = String(format:"%03.2f", arguments: [yearly / 12])
+            MonthlyNetValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12])
         }
         if !HourlyNetValue.isFirstResponder() {
-            HourlyNetValue.text = String(format:"%03.2f", arguments: [yearly / 12 / 30])
+            HourlyNetValue.text = String(format:"%03.2f", arguments: [yearlyGross / 12 / 152])
         }
     }
     
