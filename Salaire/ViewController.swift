@@ -17,6 +17,10 @@ class ViewController: UIViewController {
     @IBOutlet weak var YearlyNetValue: UITextField!
     @IBOutlet weak var YearlyGrossValue: UITextField!
     
+    @IBOutlet weak var hoursPerWeekValue: UITextField!
+    @IBOutlet weak var monthsPerYearValue: UITextField!
+    @IBOutlet weak var wageCostsValue: UITextField!
+    
     @IBAction func HourlyGrossChanged(sender: AnyObject) {
         let inputDouble = (HourlyGrossValue.text! as NSString).doubleValue
         computeValues(inputDouble * 12 * 152)
