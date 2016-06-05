@@ -53,22 +53,22 @@ class ViewController: UIViewController {
         
         
         if !YearlyGrossValue.isFirstResponder() {
-            YearlyGrossValue.text = (String)(yearly)
+            YearlyGrossValue.text = String(format:"%03.2f", arguments: [yearly])
         }
         if !MonthlyGrossValue.isFirstResponder() {
-            MonthlyGrossValue.text = (String)(yearly / 12)
+            MonthlyGrossValue.text = String(format:"%03.2f", arguments: [yearly / 12])
         }
         if !HourlyGrossValue.isFirstResponder() {
-            HourlyGrossValue.text = (String)(yearly / 12 / 30)
+            HourlyGrossValue.text = String(format:"%03.2f", arguments: [yearly / 12 / 30])
         }
         if !YearlyNetValue.isFirstResponder() {
-            YearlyNetValue.text = (String)(yearly)
+            YearlyNetValue.text = String(format:"%03.2f", arguments: [yearly])
         }
         if !MonthlyNetValue.isFirstResponder() {
-            MonthlyNetValue.text = (String)(yearly / 12)
+            MonthlyNetValue.text = String(format:"%03.2f", arguments: [yearly / 12])
         }
         if !HourlyNetValue.isFirstResponder() {
-            HourlyNetValue.text = (String)(yearly / 12 / 30)
+            HourlyNetValue.text = String(format:"%03.2f", arguments: [yearly / 12 / 30])
         }
     }
     
