@@ -64,7 +64,11 @@ class ViewController: UIViewController {
     var yearlyGross: Double!
     
     func formatNumber(number: Double) -> String {
-        return String(format:"%03.2f", arguments: [number])
+        let ret = String(format:"%03.2f", arguments: [number])
+        if ret.containsString(".00") {
+            return String(format:"%01.0f", arguments: [number])
+        }
+        return ret
     }
     
     func computeValues(yearlyGross: Double) {
