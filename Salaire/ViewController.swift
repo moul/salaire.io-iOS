@@ -96,12 +96,31 @@ class ViewController: UIViewController {
     }
 
     // helpers
+    func getHoursPerWeek() -> Double {
+        if (!hoursPerWeekValue.text!.isEmpty) {
+            return (hoursPerWeekValue.text! as NSString).doubleValue
+        }
+        return (hoursPerWeekValue.placeholder! as NSString).doubleValue
+    }
+    func getMonthsPerYear() -> Double {
+        if (!monthsPerYearValue.text!.isEmpty) {
+            return (monthsPerYearValue.text! as NSString).doubleValue
+        }
+        return (monthsPerYearValue.placeholder! as NSString).doubleValue
+    }
+    func getWageCosts() -> Double {
+        if (!wageCostsValue.text!.isEmpty) {
+            return (wageCostsValue.text! as NSString).doubleValue
+        }
+        return (wageCostsValue.placeholder! as NSString).doubleValue
+    }
+    
     func hoursToMonths(hours: Double) -> Double {
-        return hours * (hoursPerWeekValue.text! as NSString).doubleValue * 52 / 12
+        return hours * getHoursPerWeek() * 52 / 12
     }
     
     func monthsToHours(months: Double) -> Double {
-        return months / ((hoursPerWeekValue.text! as NSString).doubleValue * 52 / 12)
+        return months / (getHoursPerWeek() * 52 / 12)
     }
     
     func hoursToYears(hours: Double) -> Double {
@@ -113,21 +132,19 @@ class ViewController: UIViewController {
     }
     
     func yearsToMonths(years: Double) -> Double {
-        return years / (monthsPerYearValue.text! as NSString).doubleValue
+        return years / getMonthsPerYear()
     }
     
     func monthsToYears(months: Double) -> Double {
-        return months * (monthsPerYearValue.text! as NSString).doubleValue
+        return months * getMonthsPerYear()
     }
     
     func netToGross(net: Double) -> Double {
-        let wageCosts = (wageCostsValue.text! as NSString).doubleValue
-        return net * 100 / (100 - wageCosts)
+        return net * 100 / (100 - getWageCosts())
     }
     
     func grossToNet(gross: Double) -> Double {
-        let wageCosts = (wageCostsValue.text! as NSString).doubleValue
-        return gross * (100 - wageCosts) / 100
+        return gross * (100 - getWageCosts()) / 100
     }
 }
 
