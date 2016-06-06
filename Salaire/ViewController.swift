@@ -63,25 +63,29 @@ class ViewController: UIViewController {
     
     var yearlyGross: Double!
     
+    func formatNumber(number: Double) -> String {
+        return String(format:"%03.2f", arguments: [number])
+    }
+    
     func computeValues(yearlyGross: Double) {
         
         if !YearlyGrossValue.isFirstResponder() {
-            YearlyGrossValue.text = String(format:"%03.2f", arguments: [yearlyGross])
+            YearlyGrossValue.text = formatNumber(yearlyGross)
         }
         if !MonthlyGrossValue.isFirstResponder() {
-            MonthlyGrossValue.text = String(format:"%03.2f", arguments: [yearsToMonths(yearlyGross)])
+            MonthlyGrossValue.text = formatNumber(yearsToMonths(yearlyGross))
         }
         if !HourlyGrossValue.isFirstResponder() {
-            HourlyGrossValue.text = String(format:"%03.2f", arguments: [yearsToHours(yearlyGross)])
+            HourlyGrossValue.text = formatNumber(yearsToHours(yearlyGross))
         }
         if !YearlyNetValue.isFirstResponder() {
-            YearlyNetValue.text = String(format:"%03.2f", arguments: [grossToNet(yearlyGross)])
+            YearlyNetValue.text = formatNumber(grossToNet(yearlyGross))
         }
         if !MonthlyNetValue.isFirstResponder() {
-            MonthlyNetValue.text = String(format:"%03.2f", arguments: [grossToNet(yearsToMonths(yearlyGross))])
+            MonthlyNetValue.text = formatNumber(grossToNet(yearsToMonths(yearlyGross)))
         }
         if !HourlyNetValue.isFirstResponder() {
-            HourlyNetValue.text = String(format:"%03.2f", arguments: [grossToNet(yearsToHours(yearlyGross))])
+            HourlyNetValue.text = formatNumber(grossToNet(yearsToHours(yearlyGross)))
         }
     }
     
