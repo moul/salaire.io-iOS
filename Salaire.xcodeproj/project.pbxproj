@@ -15,6 +15,7 @@
 		18DCD7F61D01C2970084C065 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DCD7F41D01C2970084C065 /* LaunchScreen.storyboard */; };
 		18DCD8011D01C2970084C065 /* SalaireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DCD8001D01C2970084C065 /* SalaireTests.swift */; };
 		18DCD80C1D01C2970084C065 /* SalaireUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DCD80B1D01C2970084C065 /* SalaireUITests.swift */; };
+		3679846046544C10962C7C0F /* Pods_Salaire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F48B02A00D90DF039A6FC71E /* Pods_Salaire.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,9 @@
 		18DCD8071D01C2970084C065 /* SalaireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalaireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DCD80B1D01C2970084C065 /* SalaireUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalaireUITests.swift; sourceTree = "<group>"; };
 		18DCD80D1D01C2970084C065 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5170FD8DEED32413EBD2F6A7 /* Pods-Salaire.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Salaire.release.xcconfig"; path = "Pods/Target Support Files/Pods-Salaire/Pods-Salaire.release.xcconfig"; sourceTree = "<group>"; };
+		66ECBC61372426358BDE14AC /* Pods-Salaire.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Salaire.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Salaire/Pods-Salaire.debug.xcconfig"; sourceTree = "<group>"; };
+		F48B02A00D90DF039A6FC71E /* Pods_Salaire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Salaire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3679846046544C10962C7C0F /* Pods_Salaire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +88,8 @@
 				18DCD7FF1D01C2970084C065 /* SalaireTests */,
 				18DCD80A1D01C2970084C065 /* SalaireUITests */,
 				18DCD7E61D01C2960084C065 /* Products */,
+				500CF73B92D1A1C0665AC9E1 /* Pods */,
+				FA5B54EDB3BCE894A1BCE847 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +135,23 @@
 			path = SalaireUITests;
 			sourceTree = "<group>";
 		};
+		500CF73B92D1A1C0665AC9E1 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				66ECBC61372426358BDE14AC /* Pods-Salaire.debug.xcconfig */,
+				5170FD8DEED32413EBD2F6A7 /* Pods-Salaire.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		FA5B54EDB3BCE894A1BCE847 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F48B02A00D90DF039A6FC71E /* Pods_Salaire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 18DCD8101D01C2970084C065 /* Build configuration list for PBXNativeTarget "Salaire" */;
 			buildPhases = (
+				5AC6BE9F2FCDBC26B3B31EA2 /* [CP] Check Pods Manifest.lock */,
 				18DCD7E11D01C2960084C065 /* Sources */,
 				18DCD7E21D01C2960084C065 /* Frameworks */,
 				18DCD7E31D01C2960084C065 /* Resources */,
+				6DC5E233740EA3C88729C794 /* [CP] Embed Pods Frameworks */,
+				F3410953EFAE8993727848FA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -196,6 +223,7 @@
 				TargetAttributes = {
 					18DCD7E41D01C2960084C065 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = S5X8SNY6A9;
 					};
 					18DCD7FB1D01C2970084C065 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -253,6 +281,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5AC6BE9F2FCDBC26B3B31EA2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6DC5E233740EA3C88729C794 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Salaire/Pods-Salaire-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3410953EFAE8993727848FA /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Salaire/Pods-Salaire-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		18DCD7E11D01C2960084C065 /* Sources */ = {
@@ -403,23 +479,31 @@
 		};
 		18DCD8111D01C2970084C065 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 66ECBC61372426358BDE14AC /* Pods-Salaire.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Salaire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = am.42.Salaire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		18DCD8121D01C2970084C065 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5170FD8DEED32413EBD2F6A7 /* Pods-Salaire.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Salaire/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = am.42.Salaire;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -488,6 +572,7 @@
 				18DCD8121D01C2970084C065 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18DCD8131D01C2970084C065 /* Build configuration list for PBXNativeTarget "SalaireTests" */ = {
 			isa = XCConfigurationList;
@@ -496,6 +581,7 @@
 				18DCD8151D01C2970084C065 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18DCD8161D01C2970084C065 /* Build configuration list for PBXNativeTarget "SalaireUITests" */ = {
 			isa = XCConfigurationList;
@@ -504,6 +590,7 @@
 				18DCD8181D01C2970084C065 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
