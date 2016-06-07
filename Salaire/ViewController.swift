@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var yearlyGross: Double!
+
     @IBOutlet weak var HourlyGrossValue: UITextField!
     @IBOutlet weak var HourlyNetValue: UITextField!
     @IBOutlet weak var MonthlyNetValue: UITextField!
@@ -21,47 +23,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var monthsPerYearValue: UITextField!
     @IBOutlet weak var wageCostsValue: UITextField!
     
+    @IBAction func HourlyGrossChanged(sender: AnyObject)   { refresh() }
+    @IBAction func HourlyNetChanged(sender: AnyObject)     { computeValues(netToGross(hoursToYears(parseDoubleInput(HourlyNetValue)))) }
+    @IBAction func MonthlyGrossChanged(sender: AnyObject)  { computeValues(monthsToYears(parseDoubleInput(MonthlyGrossValue))) }
+    @IBAction func MonthlyNetChanged(sender: AnyObject)    { computeValues(netToGross(monthsToYears(parseDoubleInput(MonthlyNetValue)))) }
+    @IBAction func YearlyGrossChanged(sender: AnyObject)   { computeValues(parseDoubleInput(YearlyGrossValue)) }
+    @IBAction func YearlyNetChanged(sender: AnyObject)     { computeValues(netToGross(parseDoubleInput(YearlyNetValue))) }
     
     
-    @IBAction func HourlyGrossChanged(sender: AnyObject) {
-        refresh()
-    }
-    
-    @IBAction func HourlyNetChanged(sender: AnyObject) {
-        let inputDouble = (HourlyNetValue.text! as NSString).doubleValue
-        computeValues(netToGross(hoursToYears(inputDouble)))
-    }
-    
-    @IBAction func MonthlyGrossChanged(sender: AnyObject) {
-        let inputDouble = (MonthlyGrossValue.text! as NSString).doubleValue
-        computeValues(monthsToYears(inputDouble))
-    }
-    
-    @IBAction func MonthlyNetChanged(sender: AnyObject) {
-        let inputDouble = (MonthlyNetValue.text! as NSString).doubleValue
-        computeValues(netToGross(monthsToYears(inputDouble)))
-    }
-    
-    @IBAction func YearlyGrossChanged(sender: AnyObject) {
-        let inputDouble = (YearlyGrossValue.text! as NSString).doubleValue
-        computeValues(inputDouble)
-    }
-    
-    @IBAction func YearlyNetChanged(sender: AnyObject) {
-        let inputDouble = (YearlyNetValue.text! as NSString).doubleValue
-        computeValues(netToGross(inputDouble))
-    }
-    
-    func refresh() {
-        let inputDouble = (HourlyGrossValue.text! as NSString).doubleValue
-        computeValues(hoursToYears(inputDouble))
-    }
-    
-    @IBAction func hoursPerWeekChanged(sender: AnyObject) { refresh() }
+    @IBAction func hoursPerWeekChanged(sender: AnyObject)  { refresh() }
     @IBAction func monthsPerYearChanged(sender: AnyObject) { refresh() }
-    @IBAction func wageCostsChanged(sender: AnyObject) { refresh() }
+    @IBAction func wageCostsChanged(sender: AnyObject)     { refresh() }
     
-    var yearlyGross: Double!
+    func refresh()                                         {
+        computeValues(hoursToYears(parseDoubleInput(HourlyGrossValue)))
+    }
+
+    func parseDoubleInput(field: UITextField!) -> Double {
+        // FIXME: replace commas with points
+        if !field.text!.isEmpty {
+            return (field.text! as NSString).doubleValue
+        }
+        return (field.placeholder! as NSString).doubleValue
+    }
     
     func formatNumber(number: Double) -> String {
         let ret = String(format:"%03.2f", arguments: [number])
@@ -104,31 +88,12 @@ class ViewController: UIViewController {
     }
 
     // helpers
-    func getHoursPerWeek() -> Double {
-        if (!hoursPerWeekValue.text!.isEmpty) {
-            return (hoursPerWeekValue.text! as NSString).doubleValue
-        }
-        return (hoursPerWeekValue.placeholder! as NSString).doubleValue
-    }
-    func getMonthsPerYear() -> Double {
-        if (!monthsPerYearValue.text!.isEmpty) {
-            return (monthsPerYearValue.text! as NSString).doubleValue
-        }
-        return (monthsPerYearValue.placeholder! as NSString).doubleValue
-    }
-    func getWageCosts() -> Double {
-        if (!wageCostsValue.text!.isEmpty) {
-            return (wageCostsValue.text! as NSString).doubleValue
-        }
-        return (wageCostsValue.placeholder! as NSString).doubleValue
-    }
-    
     func hoursToMonths(hours: Double) -> Double {
-        return hours * getHoursPerWeek() * 52 / 12
+        return hours * parseDoubleInput(hoursPerWeekValue) * 52 / 12
     }
     
     func monthsToHours(months: Double) -> Double {
-        return months / (getHoursPerWeek() * 52 / 12)
+        return months / (parseDoubleInput(hoursPerWeekValue) * 52 / 12)
     }
     
     func hoursToYears(hours: Double) -> Double {
@@ -140,19 +105,19 @@ class ViewController: UIViewController {
     }
     
     func yearsToMonths(years: Double) -> Double {
-        return years / getMonthsPerYear()
+        return years / parseDoubleInput(monthsPerYearValue)
     }
     
     func monthsToYears(months: Double) -> Double {
-        return months * getMonthsPerYear()
+        return months * parseDoubleInput(monthsPerYearValue)
     }
     
     func netToGross(net: Double) -> Double {
-        return net * 100 / (100 - getWageCosts())
+        return net * 100 / (100 - parseDoubleInput(wageCostsValue))
     }
     
     func grossToNet(gross: Double) -> Double {
-        return gross * (100 - getWageCosts()) / 100
+        return gross * (100 - parseDoubleInput(wageCostsValue)) / 100
     }
 }
 
